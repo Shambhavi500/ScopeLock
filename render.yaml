@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: scopelock
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_API_BASE
+        value: https://api-m.sandbox.paypal.com
+      - key: NEXT_PUBLIC_PAYPAL_SDK_URL
+        value: https://www.sandbox.paypal.com/web-sdk/v6/core
+      - key: DEMO_CLIENT_EMAIL
+        sync: false
+      - key: DEMO_CONTRACTOR_EMAILS
+        sync: false
+      - key: DEMO_BUYER_EMAIL
+        sync: false
+      - key: DEMO_BUYER_PASSWORD
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: DATABASE_PATH
+        value: ./data/scopelock.db
+      - key: PAYOUT_CAP_CENTS
+        value: "500000"
+      - key: APP_BASE_URL
+        sync: false
